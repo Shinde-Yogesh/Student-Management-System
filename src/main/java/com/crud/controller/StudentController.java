@@ -3,6 +3,8 @@ package com.crud.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,13 +24,13 @@ public class StudentController {
 
 	// get the student list
 	@GetMapping("/allStudents")
-	public List<Student> getAllStudent() {
+	public ResponseEntity<List<Student>> getAllStudent() {
 		return this.studentService.getAllStudent();
 	}
 
 	// Create the student Details
 	@PostMapping("/createStudent")
-	public Student createStudentDetails(@RequestBody Student student) {
+	public ResponseEntity<Student> createStudentDetails(@RequestBody Student student) {
 		return this.studentService.createStudentDetails(student);
 	}
 
@@ -45,5 +47,10 @@ public class StudentController {
 	public void closeAdmission(@PathVariable("id") int id) {
 		this.studentService.closeAdmission(id);
 	}
+	 
+	 @GetMapping("/get/student/{studentId}")
+	    public ResponseEntity<Student> getStudentById(@PathVariable(value = "studentId") int studentId){
+	        return studentService.getStudentById(studentId);
+	    }
 
 }
