@@ -52,5 +52,4 @@ public class StudentController {
 	    public ResponseEntity<Student> getStudentById(@PathVariable(value = "studentId") int studentId){
 	        return studentService.getStudentById(studentId);
 	    }
-
 }
